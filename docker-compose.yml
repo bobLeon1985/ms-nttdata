@@ -35,6 +35,16 @@ services:
       context: ./spf-msa-personas
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "8081:8081"
+    networks:
+      - backend
+
+  account-movements:
+    image: spf-msa-cuentas:latest
+    build:
+      context: ./spf-msa-cuentas
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
     networks:
       - backend
