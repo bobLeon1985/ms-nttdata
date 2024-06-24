@@ -1,0 +1,9 @@
+README.md
+pom.xml
+src/main/java/com/bce/services/server/ApiUtil.java
+src/main/java/com/bce/services/server/ClientsApi.java
+src/main/java/com/bce/services/server/models/ClienteDTO.java
+src/main/java/com/bce/services/server/models/Error.java
+src/main/java/com/bce/services/server/models/ErrorBadRequest.java
+src/main/java/com/bce/services/server/models/ErrorList.java
+src/main/java/com/bce/services/server/models/RespuestaDTO.java
