@@ -12,6 +12,7 @@ import lombok.experimental.FieldDefaults;
 
 import java.math.BigDecimal;
 
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
