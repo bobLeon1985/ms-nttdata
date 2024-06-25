@@ -17,7 +17,7 @@ def packageName = 'com.bce.cuentas'
 def dirName = 'com/bce/cuentas'
 
 springBoot {
-    mainClass = "${packageName}.OptimusMainApplication"
+    mainClass = "${packageName}.MainApplication"
 }
 apply plugin: "java"
 apply plugin: "org.openapi.generator"
@@ -68,18 +68,14 @@ dependencies {
     implementation 'org.postgresql:r2dbc-postgresql'
     runtimeOnly 'org.postgresql:postgresql'
 
-    // https://mvnrepository.com/artifact/javax.persistence/javax.persistence-api
-    implementation 'javax.persistence:javax.persistence-api:2.2'
+    // Google Guava
+    implementation 'com.google.guava:guava:33.2.0-jre'
 
     //dependencias para redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
     implementation 'io.lettuce:lettuce-core'
 
     implementation group: 'org.modelmapper', name: 'modelmapper', version: '3.0.0'
-
-    //seguridad
-    implementation 'org.xerial.snappy:snappy-java:1.1.10.5'
-    implementation 'org.yaml:snakeyaml:2.0'
 
     //test
     testImplementation "org.springframework.boot:spring-boot-starter-test"
@@ -105,7 +101,7 @@ task buildSpringServer(type: org.openapitools.generator.gradle.plugin.tasks.Gene
             openApiNullable                         : "false",
             reactive                                : "true",
             apiFirst                                : "false",
-            delegatePattern                         : "false",
+            delegatePattern                         : "true",
             configPackage                           : "com.bce.services.config",
             sourceFolder                            : "src/main/java",
             basePackage                             : "com.bce",
