@@ -1,0 +1,236 @@
+{
+	"info": {
+		"_postman_id": "3ff3d3c5-b5fc-4d06-8c78-80ae5ac11a31",
+		"name": "NTTDATA-2024",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23185818",
+		"_collection_link": "https://restless-satellite-781758.postman.co/workspace/Team-Workspace~378ba1af-bcef-45ff-8318-81d508067c96/collection/23185818-3ff3d3c5-b5fc-4d06-8c78-80ae5ac11a31?action=share&source=collection_link&creator=23185818"
+	},
+	"item": [
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "Clientes-GET-All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/msclient/v1/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"msclient",
+								"v1",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Clientes-POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombres\": \"Juan Osorio\",\r\n    \"genero\": \"F\",\r\n    \"edad\": 34,\r\n    \"identificacion\": \"0704907922\",\r\n    \"direccion\": \"Amazonas y NNUU\",\r\n    \"telefono\": \"099999999\",\r\n    \"contrasenia\": \"amor\",\r\n    \"estado\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/msclient/v1/clients",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"msclient",
+								"v1",
+								"clients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET-ById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/msclient/v1/clients/byid/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"msclient",
+								"v1",
+								"clients",
+								"byid",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Account",
+			"item": [
+				{
+					"name": "Cuentas-POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numeroCuenta\": \"999999\",\r\n    \"tipoCuenta\": \"A\",\r\n    \"saldoInicial\": 0,\r\n    \"estado\": true,\r\n    \"idCliente\":9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/msaccount/v1/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"msaccount",
+								"v1",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cuentas-GET",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/msaccount/v1/cuentas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"msaccount",
+								"v1",
+								"cuentas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cuentas-GET-ById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8084/msaccount/v1/cuentas/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8084",
+							"path": [
+								"msaccount",
+								"v1",
+								"cuentas",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaction",
+			"item": [
+				{
+					"name": "Movimientos-POST",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoMovimiento\":\"R\",\r\n    \"valor\": -5000,\r\n    \"cuentaId\": 1\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/msaccount/v1/movimientos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"msaccount",
+								"v1",
+								"movimientos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Movimientos-GET-ByXIdentification",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json; charset=UTF-8"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/msaccount/v1/movimientos/reporte?identifiacion=0704379460",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"msaccount",
+								"v1",
+								"movimientos",
+								"reporte"
+							],
+							"query": [
+								{
+									"key": "identifiacion",
+									"value": "0704379460"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
