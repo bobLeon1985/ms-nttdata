@@ -37,7 +37,13 @@ public class AccountController implements CuentasApi {
                 .map(response -> ResponseEntity.ok().build());
     }
 
-    /*
+    @Override
+    public Mono<ResponseEntity<CuentaDTO>> consultarxid(Integer id, ServerWebExchange exchange) {
+        return accountService.getAccountById(id.longValue())
+                .map(accountMapper::toCuentaDto)
+                .map(cuentaDTO -> ResponseEntity.ok().body(cuentaDTO));
+    }
+/*
     @GetMapping
     public ResponseEntity<List<CuentaDto>> listar() throws Exception {
         List<CuentaDto> lista = cuentaServicio.listar().stream().map(p -> mapper.map(p, CuentaDto.class))

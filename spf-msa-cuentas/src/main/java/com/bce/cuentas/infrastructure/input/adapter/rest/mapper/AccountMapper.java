@@ -33,7 +33,8 @@ public interface AccountMapper {
             @Mapping(target = "numeroCuenta", source = "accountNumber"),
             @Mapping(target = "tipoCuenta", source = "accountType"),
             @Mapping(target = "saldoInicial", source = "initialBalance"),
-            @Mapping(target = "estado", source = "status")
+            @Mapping(target = "estado", source = "status"),
+            @Mapping(target = "idCliente", source = "idClient")
     })
     CuentaDTO toCuentaDto(AccountDo accountDo);
 }

@@ -23,16 +23,16 @@ public class AccountDo {
     private Long idCuenta;
 
     @Pattern(regexp = "[0-9]*")
-    private String accountNumber;
+    String accountNumber;
 
-    private TipoCuentaEnum accountType;
+    TipoCuentaEnum accountType;
 
     @DecimalMin(value = "0.00")
-    private BigDecimal initialBalance;
+    BigDecimal initialBalance;
 
-    private Boolean status;
+    Boolean status;
 
-    private Integer idClient;
+    Integer idClient;
     //@JsonIgnore
     //private Cliente cliente;
 }

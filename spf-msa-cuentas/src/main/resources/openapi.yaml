@@ -16,7 +16,7 @@ tags:
   - name: Cuentas
     description: Cuentas
   - name: Movimientos
-    description: movimientos
+    description: Movimientos
 paths:
   /cuentas:
     get:
@@ -80,6 +80,44 @@ paths:
             application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RespuestaDTO'
+  /cuentas/{id}:
+    get:
+      tags:
+        - Cuentas
+      summary: Consultar cuenta c id
+      description: Consultar cuenta x id
+      operationId: consultarxid
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/CuentaDTO'
+        '204':
+          description: No Content
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RespuestaDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RespuestaDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RespuestaDTO'
   /movimientos:
     post:
       tags:
@@ -113,6 +151,81 @@ paths:
             application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RespuestaDTO'
+    get:
+      tags:
+        - Movimiento
+      summary: Consultar movmientos
+      description: Consultar movmientos
+      operationId: consultarMovientos
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MovimientoDTO'
+        '201':
+          description: OK
+          content:
+            application/json;charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/MovimientoDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RespuestaDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RespuestaDTO'
+
+  /movimientos/reporte:
+    get:
+      tags:
+        - Reportes
+      summary: Reportes movmientos
+      description: Reportes movmientos
+      operationId: reportesMovimientos
+      parameters:
+        - name: identifiacion
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountStateReportDto'
+        '204':
+          description: No Content
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RespuestaDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RespuestaDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RespuestaDTO'
+
 components:
   schemas:
     CuentaDTO:
@@ -160,6 +273,26 @@ components:
           type: number
         cuentaId:
           type: integer
+    AccountStateReportDto:
+      type: object
+      properties:
+        fecha:
+          type: string
+          format: date-time
+        cliente:
+          type: string
+        numeroCuenta:
+          type: string
+        tipo:
+          type: string
+        saldoInicial:
+          type: number
+        estado:
+          type: boolean
+        movimiento:
+          type: number
+        saldoDisponible:
+          type: number
     RespuestaDTO:
       type: object
       properties:

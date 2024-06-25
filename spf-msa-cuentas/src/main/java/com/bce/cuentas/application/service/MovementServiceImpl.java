@@ -5,6 +5,7 @@ import com.bce.cuentas.application.input.port.MovementService;
 import com.bce.cuentas.application.output.port.AccountRepositoryService;
 import com.bce.cuentas.application.output.port.MovementRepositoryService;
 import com.bce.cuentas.domain.AccountDo;
+import com.bce.cuentas.domain.AccountStateReport;
 import com.bce.cuentas.domain.MovementDo;
 import com.bce.cuentas.domain.enums.TipoMovimientoEnum;
 import com.bce.cuentas.infrastructure.exception.TransactionException;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
@@ -55,6 +57,19 @@ public class MovementServiceImpl implements MovementService {
                 });
     }
 
+    @NonNull
+    @Override
+    public Flux<MovementDo> getAll() {
+        return movementRepositoryService.getAll()
+                .map(movementMapper::toMovementDo);
+
+    }
+    @NonNull
+    @Override
+    public Flux<AccountStateReport> reportXUserAndDate(String identification) {
+        return movementRepositoryService.reportXUserAndDate(identification);
+    }
+
 
     private void depositMoney(AccountDo account, MovementDo transaction) {
         account.setInitialBalance(account.getInitialBalance().add(transaction.getValor()));
@@ -66,6 +81,9 @@ public class MovementServiceImpl implements MovementService {
         }
         account.setInitialBalance(account.getInitialBalance().add(transaction.getValor()));
     }
+
+
+
     /*extends CRUDImpl<Movimiento, Long> implements IMovimientoServicio {
 
     @Autowired

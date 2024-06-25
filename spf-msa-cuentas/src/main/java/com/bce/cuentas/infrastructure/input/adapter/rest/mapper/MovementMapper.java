@@ -1,9 +1,11 @@
 package com.bce.cuentas.infrastructure.input.adapter.rest.mapper;
 
+import com.bce.cuentas.domain.AccountStateReport;
 import com.bce.cuentas.domain.MovementDo;
 import com.bce.cuentas.domain.enums.TipoCuentaEnum;
 import com.bce.cuentas.domain.enums.TipoMovimientoEnum;
 import com.bce.cuentas.infrastructure.output.repository.entity.Movements;
+import com.bce.services.server.models.AccountStateReportDto;
 import com.bce.services.server.models.MovimientoDTO;
 import org.mapstruct.*;
 
@@ -16,11 +18,11 @@ import org.mapstruct.*;
 public interface MovementMapper {
 
     @Mappings({
-            @Mapping(target = "idCuenta",source = "cuentaId")
+            @Mapping(target = "idCuenta", source = "cuentaId")
     })
     MovementDo toMovementDo(MovimientoDTO movimientoDTO);
 
-
+    @Mapping(target = "cuentaId", source = "idCuenta")
     MovimientoDTO toMovimientoDto(MovementDo movementDo);
 
     default TipoMovimientoEnum map(String value) {
@@ -30,5 +32,7 @@ public interface MovementMapper {
     /*@Mappings({
             @Mapping(target = "",source = "")
     })*/
-    MovementDo toMovementDo (Movements movements);
+    MovementDo toMovementDo(Movements movements);
+
+    AccountStateReportDto toAccountStateReportDto(AccountStateReport accountStateReport);
 }
