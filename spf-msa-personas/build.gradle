@@ -18,7 +18,7 @@ plugins {
 def packageName = 'com.bce.personas'
 def dirName = 'com/bce/personas'
 springBoot {
-    mainClass = "${packageName}.OptimusMainApplication"
+    mainClass = "${packageName}.MainApplication"
 }
 
 
@@ -84,21 +84,11 @@ dependencies {
     implementation 'com.google.guava:guava:33.2.0-jre'
 
 
-    //seguridad
-    implementation 'org.xerial.snappy:snappy-java:1.1.10.5'
-    implementation 'org.yaml:snakeyaml:2.0'
-
     //test
     testImplementation "org.springframework.boot:spring-boot-starter-test"
     testImplementation "io.projectreactor:reactor-test"
     testImplementation "org.junit.jupiter:junit-jupiter-engine"
     testImplementation "org.xmlunit:xmlunit-core:2.10.0"
-}
-
-apply plugin: "entitygen"
-entityGen {
-    configPath = "src/main/resources/entityGenConfig.yml"
-
 }
 
 task buildSpringServer(type: org.openapitools.generator.gradle.plugin.tasks.GenerateTask) {
