@@ -30,6 +30,7 @@ public class MovementsController implements MovimientosApi {
                 })
                 .map(movementDo -> ResponseEntity.ok().body(movementMapper.toMovimientoDto(movementDo)));
     }
+
 /*public static final String ID_NO_ENCONTRADO = "ID NO ENCONTRADO ";
 
     @Autowired
