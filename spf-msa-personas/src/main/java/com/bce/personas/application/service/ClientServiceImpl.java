@@ -9,6 +9,7 @@ import com.bce.personas.infrastructure.output.repository.entity.Person;
 import io.r2dbc.spi.ConnectionFactory;
 import io.r2dbc.spi.Row;
 import io.r2dbc.spi.RowMetadata;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.NonNull;
@@ -29,6 +30,15 @@ public class ClientServiceImpl implements ClientService {
     private final ClientMapper clientMapper;
     private final DatabaseClient databaseClient;
     private final ConnectionFactory connectionFactory;
+
+    @NonNull
+    @Override
+    public Mono<ClientDo> getClientId(@NotNull Integer id) {
+        return clientRepositoryService.getClientId(Long.valueOf(id))
+                .map(client -> findByCodPerson(client.getPersonaId())
+                        .map(person -> clientMapper.toClientDo(client, person)))
+                .flatMap(clientDoMono -> clientDoMono);
+    }
 
     @NonNull
     @Override

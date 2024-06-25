@@ -2,6 +2,7 @@ package com.bce.personas.infrastructure.output.adapter;
 
 import com.bce.personas.application.output.port.ClientRepositoryService;
 import com.bce.personas.domain.ClientDo;
+import com.bce.personas.infrastructure.exception.ClientNotFoundException;
 import com.bce.personas.infrastructure.exception.DatabaseSavingOperationException;
 import com.bce.personas.infrastructure.output.repository.IClientService;
 import com.bce.personas.infrastructure.output.repository.entity.Client;
@@ -33,6 +34,13 @@ public class ClientRepositoryAdapter implements ClientRepositoryService {
 
     @NonNull
     @Override
+    public Mono<Client> getClientId(Long id) {
+        return iClientService.getById(id)
+                .switchIfEmpty(Mono.error(ClientNotFoundException::new));
+    }
+
+    @NonNull
+    @Override
     public Flux<Client> getAll() {
         return iClientService.getAll();
     }
@@ -41,12 +49,7 @@ public class ClientRepositoryAdapter implements ClientRepositoryService {
     @Override
     public Mono<Client> create(ClientDo client) {
         return customPerson(client)
-                .flatMap(person ->
-                        {
-                            final var clientRequest = clientRepositoryMapper.toClient(client, person);
-                            return iClientService.registrar(clientRequest);
-                        }
-                )
+                .flatMap(person -> iClientService.registrar(clientRepositoryMapper.toClient(client, person)))
                 .map(response -> response);
 
     }

@@ -28,6 +28,13 @@ public class PersonController implements ClientsApi {
     }
 
     @Override
+    public Mono<ResponseEntity<ClienteDTO>> consultarXID(Integer clientId, ServerWebExchange exchange) {
+        log.info("|--> Start get client by id");
+        return clientService.getClientId(clientId)
+                .map(clientDo -> ResponseEntity.ok().body(clientMapper.toClienteDto(clientDo)));
+    }
+
+    @Override
     public Mono<ResponseEntity<Flux<ClienteDTO>>> consultarClientes(ServerWebExchange exchange) {
         log.info("|--> Start get all clients");
         return clientService.getAll()
@@ -55,4 +62,6 @@ public class PersonController implements ClientsApi {
     public Mono<ResponseEntity<Void>> eliminarCliente(Integer id, ServerWebExchange exchange) {
         return ClientsApi.super.eliminarCliente(id, exchange);
     }
+
+
 }

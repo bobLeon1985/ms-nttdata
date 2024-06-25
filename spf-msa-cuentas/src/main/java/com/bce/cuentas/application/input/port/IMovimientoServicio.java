@@ -1,23 +1,9 @@
-/**
- * 
- */
 package com.bce.cuentas.application.input.port;
 
 
+public interface IMovimientoServicio {/* extends ICRUD<Movimiento, Long> {
 
-import com.nndata.dto.ReporteMovimientosDto;
-import com.nndata.model.Movimiento;
+    List<ReporteMovimientosDto> reporteMovimientos(LocalDate fechaInicio, LocalDate fechaFin, Long idCliente);
 
-import java.time.LocalDate;
-import java.util.List;
-
-/**
- * @author edwinleon
- *
- */
-public interface IMovimientoServicio extends ICRUD<Movimiento, Long> {
-	
-	List<ReporteMovimientosDto> reporteMovimientos(LocalDate fechaInicio, LocalDate fechaFin, Long idCliente);
-	
-	List<Movimiento> buscarMovimientosCuenta(Long idCuenta);
+    List<Movimiento> buscarMovimientosCuenta(Long idCuenta);*/
 }

@@ -185,12 +185,50 @@ paths:
             application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RespuestaDTO'
+  /clients/byid/{id}:
+    get:
+      tags:
+        - Client
+      summary: Consultar cliente por id
+      description: Consultar cliente por id
+      operationId: consultarXID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/ClienteDTO'
+        '204':
+          description: No Content
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RespuestaDTO'
+        '400':
+          description: Bad Request
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RespuestaDTO'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json; charset=UTF-8:
+              schema:
+                $ref: '#/components/schemas/RespuestaDTO'
 components:
   schemas:
     ClienteDTO:
       required:
-        - contrasenia
         - id
+        - contrasenia
         - identificacion
       type: object
       properties:

@@ -21,7 +21,7 @@ public class PostgresConfig extends AbstractR2dbcConfiguration {
                         .port(5432)
                         .username("postgres")
                         .password("p.123456")
-                        .database("banco_db")
+                        .database("db_test")
                         .build());
     }
 }

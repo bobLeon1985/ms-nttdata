@@ -5,27 +5,9 @@ package com.bce.cuentas.application.service;
 
 
 
-import com.bce.cuentas.application.input.port.ICuentaServicio;
-import com.bce.cuentas.application.input.port.IMovimientoCuentasServicio;
-import com.bce.cuentas.application.input.port.IMovimientoServicio;
-import com.bce.cuentas.domain.MovimientoDeCuentasDto;
-import com.bce.cuentas.domain.enums.TipoMovimientoEnum;
-import com.bce.cuentas.infrastructure.output.repository.entity.Cuenta;
-import com.bce.cuentas.infrastructure.output.repository.entity.Movimiento;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -35,7 +17,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class MovimientoCuentasServicioImpl implements IMovimientoCuentasServicio {
+public class MovimientoCuentasServicioImpl {/*implements IMovimientoCuentasServicio {
 
 	@Value("${limite.retiro}")
 	private BigDecimal LIMITE_DIARIO_RETIRO;
@@ -108,6 +90,6 @@ public class MovimientoCuentasServicioImpl implements IMovimientoCuentasServicio
 				.map(val -> val.getValor().multiply(BigDecimal.valueOf(-1.0))).reduce(BigDecimal.ZERO, BigDecimal::add);
 		return valorMovimientosDeHoy.add(valorRetiro).compareTo(LIMITE_DIARIO_RETIRO) > 0;
 
-	}
+	}*/
 
 }

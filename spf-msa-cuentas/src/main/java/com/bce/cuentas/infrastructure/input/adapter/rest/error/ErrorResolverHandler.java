@@ -1,33 +1,27 @@
-package com.bce.personas.infrastructure.input.adapter.rest.error;
+package com.bce.cuentas.infrastructure.input.adapter.rest.error;
 
-import com.bce.personas.infrastructure.exception.ClientNotFoundException;
-import com.bce.personas.infrastructure.exception.CodeException;
-import com.bce.personas.infrastructure.exception.DatabaseSavingOperationException;
-import com.bce.personas.infrastructure.input.adapter.rest.error.resolver.ConflictExceptionResolver;
-import com.bce.personas.infrastructure.input.adapter.rest.error.resolver.ErrorResolver;
-import com.bce.personas.infrastructure.input.adapter.rest.error.resolver.NotFoundErrorResolver;
-import com.bce.personas.infrastructure.input.adapter.rest.error.resolver.UnexpectedErrorResolver;
+import com.bce.cuentas.infrastructure.exception.ClientNotFoundException;
+import com.bce.cuentas.infrastructure.exception.CodeException;
+import com.bce.cuentas.infrastructure.input.adapter.rest.error.resolver.ErrorResolver;
+import com.bce.cuentas.infrastructure.input.adapter.rest.error.resolver.NotFoundErrorResolver;
+import com.bce.cuentas.infrastructure.input.adapter.rest.error.resolver.UnexpectedErrorResolver;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
-
-import java.nio.charset.StandardCharsets;
-import java.util.Map;
-import java.util.stream.Stream;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.reactive.error.ErrorWebExceptionHandler;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
-
 import org.springframework.web.server.ServerWebExchange;
-
 import reactor.core.publisher.Mono;
 import reactor.util.function.Tuples;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import java.util.stream.Stream;
 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
@@ -59,9 +53,7 @@ public class ErrorResolverHandler implements ErrorWebExceptionHandler {
     resolvers.put(BuyerProgramNotFoundException.class, notFoundErrorResolver);
     resolvers.put(CustomerNotFoundException.class, notFoundErrorResolver);
     resolvers.put(CustomerProductNotFoundException.class, notFoundErrorResolver);*/
-        resolvers.put(DatabaseSavingOperationException.class, new ConflictExceptionResolver());
         resolvers.put(ClientNotFoundException.class, notFoundErrorResolver);
-
     }
 
     @SafeVarargs

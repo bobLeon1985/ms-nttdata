@@ -4,7 +4,7 @@
 package com.bce.cuentas.domain;
 
 
-import com.nndata.enums.TipoMovimientoEnums;
+import com.bce.cuentas.domain.enums.TipoMovimientoEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 public class MovimientoDeCuentasDto {
 	private String numeroCuenta;
-	private TipoMovimientoEnums tipoMovimiento;
+	private TipoMovimientoEnum tipoMovimiento;
 	private BigDecimal valor;
 	private Long idCuenta;
 }
