@@ -3,6 +3,7 @@ package com.bce.personas.application.output.port;
 import com.bce.personas.domain.ClientDo;
 import com.bce.personas.infrastructure.output.repository.entity.Client;
 import com.bce.personas.infrastructure.output.repository.entity.Person;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.lang.NonNull;
 import org.springframework.validation.annotation.Validated;
@@ -18,7 +19,17 @@ public interface ClientRepositoryService {
     Flux<Client> getAll();
 
     @NonNull
-    Mono<Client> create(ClientDo clientDo);
+    Mono<Client> create(@Valid ClientDo clientDo);
 
-    //Mono<Client> update(ClientDo clientDo);
+    @NonNull
+    Mono<Client> update(@Valid ClientDo clientDo,
+                        @NotNull Long idClient,
+                        @NotNull Long idPerson);
+
+    @NonNull
+    Mono<Person> findByCodPerson(@NotNull Long idPerson);
+
+    @NonNull
+    Mono<Person> updatePerson(@Valid ClientDo clientDo,
+                              @NotNull Long idPerson);
 }

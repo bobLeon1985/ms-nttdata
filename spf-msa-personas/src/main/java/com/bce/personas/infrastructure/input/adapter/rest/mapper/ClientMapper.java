@@ -14,7 +14,7 @@ import org.mapstruct.*;
 )
 public interface ClientMapper {
     @Mappings({
-            @Mapping(target = "id", source = "client.id"),
+            @Mapping(target = "id", source = "client.clientId"),
             @Mapping(target = "name", source = "person.name"),
             @Mapping(target = "gender", source = "person.gender"),
             @Mapping(target = "age", source = "person.age"),
@@ -27,6 +27,7 @@ public interface ClientMapper {
     ClientDo toClientDo(Client client, Person person);
 
     @Mappings({
+            @Mapping(target = "idclient", source = "id"),
             @Mapping(target = "nombres", source = "name"),
             @Mapping(target = "genero", source = "gender"),
             @Mapping(target = "edad", source = "age"),
@@ -37,6 +38,8 @@ public interface ClientMapper {
             @Mapping(target = "estado", source = "state"),
     })
     ClienteDTO toClienteDto(ClientDo clientDo);
+
+
 
     @Mappings({
             @Mapping(target = "name", source = "nombres"),

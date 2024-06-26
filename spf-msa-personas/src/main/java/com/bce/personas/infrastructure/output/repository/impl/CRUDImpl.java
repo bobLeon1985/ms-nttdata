@@ -2,11 +2,9 @@ package com.bce.personas.infrastructure.output.repository.impl;
 
 import com.bce.personas.infrastructure.output.repository.ICRUD;
 import com.bce.personas.infrastructure.output.repository.repo.IGenericRepo;
-import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-@Slf4j
 public abstract class CRUDImpl<T, ID> implements ICRUD<T, ID> {
     protected abstract IGenericRepo<T, ID> getRepo();
 
@@ -17,7 +15,7 @@ public abstract class CRUDImpl<T, ID> implements ICRUD<T, ID> {
 
     @Override
     public Mono<T> modificar(T t) {
-        return null;
+        return getRepo().save(t);
     }
 
     @Override

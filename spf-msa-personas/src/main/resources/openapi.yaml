@@ -16,7 +16,7 @@ tags:
   - name: Client
     description: Client
 paths:
-  /clients:
+  /clientes:
     get:
       tags:
         - Client
@@ -56,6 +56,13 @@ paths:
       summary: Actualizar cliente
       description: Actualizar cliente
       operationId: actualizarCliente
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+            format: int32
       requestBody:
         description: Cliente
         content:
@@ -112,7 +119,7 @@ paths:
             application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RespuestaDTO'
-  /clients/{id}:
+  /clientes/{id}:
     delete:
       tags:
         - Client
@@ -147,7 +154,7 @@ paths:
             application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RespuestaDTO'
-  /clients/{identificacion}:
+  /clientes/{identificacion}:
     get:
       tags:
         - Client
@@ -185,7 +192,7 @@ paths:
             application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RespuestaDTO'
-  /clients/byid/{id}:
+  /clientes/byid/{id}:
     get:
       tags:
         - Client
@@ -232,6 +239,8 @@ components:
         - identificacion
       type: object
       properties:
+        idclient:
+          type: integer
         nombres:
           type: string
         genero:

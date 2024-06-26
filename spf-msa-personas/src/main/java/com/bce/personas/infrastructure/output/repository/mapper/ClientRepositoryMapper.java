@@ -2,6 +2,7 @@ package com.bce.personas.infrastructure.output.repository.mapper;
 
 import com.bce.personas.domain.ClientDo;
 import com.bce.personas.infrastructure.output.repository.entity.Client;
+import jakarta.validation.constraints.NotNull;
 import org.mapstruct.*;
 
 @Mapper(
@@ -23,4 +24,12 @@ public interface ClientRepositoryMapper {
             @Mapping(target = "phone", ignore = true),
     })
     Client toClient(ClientDo clientDo, Long personId);
+
+    @Mappings({
+            @Mapping(target = "clientId", source = "idClient"),
+            @Mapping(target = "password", source = "clientDo.password"),
+            @Mapping(target = "state", source = "clientDo.state"),
+            @Mapping(target = "personaId", source = "idPerson"),
+    })
+    Client toClientUpdate(ClientDo clientDo, Long idClient, Long idPerson);
 }

@@ -16,7 +16,7 @@ spring:
     platform: postgres
   data:
     jpa:
-      show-sql: true
+      show-sql: false
     r2dbc:
       repositories:
         enabled: true
@@ -25,6 +25,6 @@ logging:
   level:
     org:
       springframework: info
-    io.r2dbc.postgresql.QUERY: DEBUG # for queries
-    io.r2dbc.postgresql.PARAM: DEBUG # for parameters
-    org.springframework.data.r2dbc: DEBUG
+    #io.r2dbc.postgresql.QUERY: DEBUG # for queries
+    #io.r2dbc.postgresql.PARAM: DEBUG # for parameters
+    #org.springframework.data.r2dbc: DEBUG

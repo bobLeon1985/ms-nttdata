@@ -28,12 +28,10 @@ public class AccountDo {
 
     TipoCuentaEnum accountType;
 
-    @DecimalMin(value = "0.00")
     BigDecimal initialBalance;
 
     Boolean status;
 
     Integer idClient;
-    //@JsonIgnore
-    //private Cliente cliente;
+
 }

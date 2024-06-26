@@ -11,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -34,7 +36,7 @@ class AccountControllerTest {
     private WebTestClient webTestClient;
 
     @Test
-    void consultarCuentasTestSucces() {
+    void consultAccountsTestSuccess() {
         when(accountService.getAll())
                 .thenReturn(Flux.just(MockData.buildAccountDo()));
         when(accountMapper.toCuentaDto(any()))
@@ -44,6 +46,26 @@ class AccountControllerTest {
                 .uri(uriBuilder -> uriBuilder.path("/cuentas").build())
                 .exchange()
                 .expectStatus().isOk();
-                //.expectBody(CuentaDTO.class);
+    }
+
+    @Test
+    void createAccountTestSuccess() {
+        when(accountService.postAccount(any()))
+                .thenReturn(Mono.empty());
+        when(accountMapper.toAccountDo(any()))
+                .thenReturn(MockData.buildAccountDo());
+        webTestClient
+                .post()
+                .uri(uriBuilder -> uriBuilder.path("/cuentas").build())
+                .accept(MediaType.APPLICATION_JSON)
+                .body(Mono.just(MockData.buildCuentaDTO()), CuentaDTO.class)
+                .exchange()
+                .expectStatus().isOk();
+
+    }
+
+    @Test
+    void consultXIdTestSuccess() {
+
     }
 }

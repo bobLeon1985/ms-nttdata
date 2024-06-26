@@ -15,7 +15,10 @@ public interface ClientService {
     Mono<ClientDo> getClientId(@NotNull Integer id);
 
     @NonNull
-    Mono<ClientDo> create(@Valid ClientDo ClientDo);
+    Mono<ClientDo> create(@Valid ClientDo clientDo);
+
+    @NonNull
+    Mono<ClientDo> update(@NotNull Long id, @Valid ClientDo clientDo);
 
     @NonNull
     Flux<ClientDo> getAll();

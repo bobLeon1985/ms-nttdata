@@ -14,8 +14,6 @@ import javax.persistence.TableGenerator;
 @Getter
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
-//@MappedSuperclass
-//@TableGenerator(name="tab", initialValue=5)
 @Table(name = "cliente")
 public class Client extends Person {
     @Id
@@ -31,6 +29,4 @@ public class Client extends Person {
     @Column("estado")
     Boolean state;
 
-    //@Transient
-    //List<AccountDto> accountList;
 }
