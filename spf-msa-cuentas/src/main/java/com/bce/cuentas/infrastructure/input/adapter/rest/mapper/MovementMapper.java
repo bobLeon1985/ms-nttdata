@@ -29,10 +29,12 @@ public interface MovementMapper {
         return TipoMovimientoEnum.valueOf(value);
     }
 
-    /*@Mappings({
-            @Mapping(target = "",source = "")
-    })*/
+
     MovementDo toMovementDo(Movements movements);
 
+    @Mappings({
+            @Mapping(target = "tipo", source = "")
+    })
     AccountStateReportDto toAccountStateReportDto(AccountStateReport accountStateReport);
+
 }

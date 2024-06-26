@@ -2,6 +2,8 @@ package com.bce.cuentas.infrastructure.input.adapter.rest.error;
 
 import com.bce.cuentas.infrastructure.exception.ClientNotFoundException;
 import com.bce.cuentas.infrastructure.exception.CodeException;
+import com.bce.cuentas.infrastructure.exception.TransactionException;
+import com.bce.cuentas.infrastructure.input.adapter.rest.error.resolver.ConflictExceptionResolver;
 import com.bce.cuentas.infrastructure.input.adapter.rest.error.resolver.ErrorResolver;
 import com.bce.cuentas.infrastructure.input.adapter.rest.error.resolver.NotFoundErrorResolver;
 import com.bce.cuentas.infrastructure.input.adapter.rest.error.resolver.UnexpectedErrorResolver;
@@ -54,6 +56,8 @@ public class ErrorResolverHandler implements ErrorWebExceptionHandler {
     resolvers.put(CustomerNotFoundException.class, notFoundErrorResolver);
     resolvers.put(CustomerProductNotFoundException.class, notFoundErrorResolver);*/
         resolvers.put(ClientNotFoundException.class, notFoundErrorResolver);
+        resolvers.put(TransactionException.class, new ConflictExceptionResolver());
+
     }
 
     @SafeVarargs

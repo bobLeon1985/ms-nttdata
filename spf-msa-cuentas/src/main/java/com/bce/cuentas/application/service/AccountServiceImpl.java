@@ -44,14 +44,7 @@ public class AccountServiceImpl implements AccountService {
                 .flatMap(clientDo -> accountRepositoryService.postAccount(accountDo));
 
 
-    } /*extends CRUDImpl<Cuenta, Long> implements ICuentaServicio {
+    }
 
-    @Autowired
-    private ICuentaRepo cuentaRepo;
-
-    @Override
-    protected IGenericRepo<Cuenta, Long> getRepo() {
-        return cuentaRepo;
-    }*/
 
 }

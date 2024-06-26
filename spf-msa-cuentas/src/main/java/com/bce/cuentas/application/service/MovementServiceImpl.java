@@ -64,6 +64,7 @@ public class MovementServiceImpl implements MovementService {
                 .map(movementMapper::toMovementDo);
 
     }
+
     @NonNull
     @Override
     public Flux<AccountStateReport> reportXUserAndDate(String identification) {
@@ -76,46 +77,10 @@ public class MovementServiceImpl implements MovementService {
     }
 
     private void withdrawMoney(AccountDo account, MovementDo transaction) {
-        if (account.getInitialBalance().compareTo(transaction.getValor()) < 0) {
+        if (account.getInitialBalance().add(transaction.getValor()).intValue() < 0) {
             throw new TransactionException("Saldo no disponible");
         }
         account.setInitialBalance(account.getInitialBalance().add(transaction.getValor()));
     }
-
-
-
-    /*extends CRUDImpl<Movimiento, Long> implements IMovimientoServicio {
-
-    @Autowired
-    private IMovimientoRepo movimientoRepo;
-
-    @Override
-    protected IGenericRepo<Movimiento, Long> getRepo() {
-        return movimientoRepo;
-    }
-
-    @Override
-    public List<ReporteMovimientosDto> reporteMovimientos(LocalDate fechaInicio, LocalDate fechaFin, Long idCliente) {
-        List<ReporteMovimientosDto> consultas = new ArrayList<>();
-        movimientoRepo.reporteMovimientos(fechaInicio, fechaFin, idCliente).forEach(x -> {
-            ReporteMovimientosDto rm = new ReporteMovimientosDto(
-                    String.valueOf(x[0]),
-                    String.valueOf(x[1]),
-                    String.valueOf(x[2]),
-                    String.valueOf(x[3]),
-                    String.valueOf(x[4]),
-                    String.valueOf(x[5]),
-                    String.valueOf(x[6]),
-                    String.valueOf(x[7]));
-            consultas.add(rm);
-        });
-        return consultas;
-    }
-
-    @Override
-    public List<Movimiento> buscarMovimientosCuenta(Long idCuenta) {
-        return movimientoRepo.findByIdCuenta(idCuenta);
-    }*/
-
 
 }

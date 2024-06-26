@@ -13,7 +13,7 @@ import java.util.List;
 
 public interface IMovimientoRepo extends IGenericRepo<Movements, Long> {
 
-    @Query("SELECT M.FECHA, P.nombre  AS CLIENTE, C.NUMERO_CUENTA, C.TIPO_CUENTA AS TIPO, M.saldo , M.VALOR AS MOVIMIENTO, M.SALDO AS SALDO_DISPONIBLE, 'true' ESTADO \n" +
+    @Query("SELECT M.FECHA, P.nombre  AS CLIENTE, C.NUMERO_CUENTA, C.TIPO_MOVIMIENTO AS TIPO, M.saldo , M.VALOR AS MOVIMIENTO, M.SALDO AS SALDO_DISPONIBLE, 'true' ESTADO \n" +
             "FROM MOVIMIENTOS M \n" +
             "  INNER JOIN CUENTA C ON M.id_cuenta  = C.id_cuenta  \n" +
             "  INNER JOIN CLIENTE C2 ON C2.cliente_id  = C.cliente_id  \n" +
