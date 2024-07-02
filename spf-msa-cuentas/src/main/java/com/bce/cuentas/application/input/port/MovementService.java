@@ -9,6 +9,8 @@ import org.springframework.validation.annotation.Validated;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+
 @Validated
 public interface MovementService {
     @NonNull
@@ -19,5 +21,9 @@ public interface MovementService {
     Flux<MovementDo> getAll();
 
     @NonNull
-    Flux<AccountStateReport> reportXUserAndDate(String identification);
+    Flux<AccountStateReport> reportXUserAndDate(
+            String identification,
+            LocalDate fechaDesde,
+            LocalDate fechaHasta
+    );
 }

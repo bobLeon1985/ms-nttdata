@@ -26,7 +26,7 @@ public class ClientAdapter implements ClientService {
         params.put("id", id);
         return webClient
                 .get()
-                .uri("/clients/byid/{id}", params)
+                .uri("/clientes/byid/{id}", params)
                 .retrieve()
                 .bodyToMono(ClientDo.class)
                 .map(clientDto -> clientDto);

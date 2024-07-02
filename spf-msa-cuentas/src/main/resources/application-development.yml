@@ -22,6 +22,9 @@ spring:
       repositories:
         enabled: true
 
+client:
+  http-client:
+    baseUrl: http://localhost:8081/msclient/v1
 
 logging:
   level:

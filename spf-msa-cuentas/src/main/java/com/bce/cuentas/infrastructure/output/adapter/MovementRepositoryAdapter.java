@@ -8,19 +8,17 @@ import com.bce.cuentas.infrastructure.output.repository.ITransactionService;
 import com.bce.cuentas.infrastructure.output.repository.entity.Movements;
 import com.bce.cuentas.infrastructure.output.repository.mapper.MovementRepositoryMapper;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 
 @Service
 @RequiredArgsConstructor
@@ -44,8 +42,8 @@ public class MovementRepositoryAdapter implements MovementRepositoryService {
     }
     @NonNull
     @Override
-    public Flux<AccountStateReport> reportXUserAndDate(String identification) {
-        return iMovimientoRepo.findEstadoCuentaByFechas(identification);
+    public Flux<AccountStateReport> reportXUserAndDate(String identification, LocalDate fechaDesde, LocalDate fechaHasta) {
+        return iMovimientoRepo.findEstadoCuentaByFechas(identification, fechaDesde ,fechaHasta);
     }
 
 

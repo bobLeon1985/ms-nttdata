@@ -14,6 +14,8 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -43,11 +45,16 @@ public class MovementsController implements MovimientosApi {
     }
 
     @Override
-    public Mono<ResponseEntity<Flux<AccountStateReportDto>>> reportesMovimientos(String identifiacion, ServerWebExchange exchange) {
-        return movementService.reportXUserAndDate(identifiacion)
+    public Mono<ResponseEntity<Flux<AccountStateReportDto>>> reportesMovimientos(String identifiacion,
+                                                                                 LocalDate fechaDesde,
+                                                                                 LocalDate fechaHasta,
+                                                                                 ServerWebExchange exchange) {
+        return movementService.reportXUserAndDate(identifiacion, fechaDesde, fechaHasta)
                 .map(movementMapper::toAccountStateReportDto)
                 .collectList()
                 .map(Flux::fromIterable)
                 .map(accountStateReportDtoFlux -> ResponseEntity.ok().body(accountStateReportDtoFlux));
     }
+
+
 }

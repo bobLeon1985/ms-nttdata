@@ -198,6 +198,16 @@ paths:
           required: true
           schema:
             type: string
+        - name: fechaDesde
+          in: query
+          required: true
+          schema:
+            type: date
+        - name: fechaHasta
+          in: query
+          required: true
+          schema:
+            type: date
       responses:
         '200':
           description: OK

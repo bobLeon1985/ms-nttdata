@@ -32,9 +32,9 @@ public interface MovementMapper {
 
     MovementDo toMovementDo(Movements movements);
 
-    @Mappings({
+    /*@Mappings({
             @Mapping(target = "tipo", source = "")
-    })
+    })*/
     AccountStateReportDto toAccountStateReportDto(AccountStateReport accountStateReport);
 
 }

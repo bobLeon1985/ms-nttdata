@@ -38,9 +38,9 @@ public class AccountRepositoryAdapter implements AccountRepositoryService {
 
     @NonNull
     @Override
-    public Mono<Void> postAccount(@Valid AccountDo accountDo) {
+    public Mono<AccountDo> postAccount(@Valid AccountDo accountDo) {
         return iAccountService.registrar(accountRepositoryMapper.toAccount(accountDo))
-                .flatMap(account -> Mono.empty());
+                .map(accountRepositoryMapper::toAccountDo);
     }
 
     /*@NonNull

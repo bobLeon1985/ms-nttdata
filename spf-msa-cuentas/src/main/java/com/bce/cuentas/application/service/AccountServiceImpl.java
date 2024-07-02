@@ -39,9 +39,10 @@ public class AccountServiceImpl implements AccountService {
 
     @NonNull
     @Override
-    public Mono<Void> postAccount(@NotNull @Valid AccountDo accountDo) {
+    public Mono<AccountDo> postAccount(@NotNull @Valid AccountDo accountDo) {
         return clientService.getClientById(accountDo.getIdClient().longValue())
-                .flatMap(clientDo -> accountRepositoryService.postAccount(accountDo));
+                .flatMap(clientDo -> accountRepositoryService.postAccount(accountDo))
+                .doOnError(throwable -> log.info("<--| Error en post account error={}", throwable.getMessage()));
 
 
     }

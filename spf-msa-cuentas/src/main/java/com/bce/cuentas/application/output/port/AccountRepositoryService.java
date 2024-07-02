@@ -17,5 +17,5 @@ public interface AccountRepositoryService {
     Flux<AccountDo> getAll();
 
     @NonNull
-    Mono<Void> postAccount(@Valid AccountDo accountDo);
+    Mono<AccountDo> postAccount(@Valid AccountDo accountDo);
 }
