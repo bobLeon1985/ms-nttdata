@@ -22,4 +22,6 @@ public interface ClientService {
 
     @NonNull
     Flux<ClientDo> getAll();
+
+    Mono<Void> deleteClientId(@NotNull Integer id);
 }

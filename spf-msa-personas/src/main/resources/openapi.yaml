@@ -119,6 +119,7 @@ paths:
             application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RespuestaDTO'
+
   /clientes/{id}:
     delete:
       tags:
@@ -154,6 +155,7 @@ paths:
             application/json; charset=UTF-8:
               schema:
                 $ref: '#/components/schemas/RespuestaDTO'
+
   /clientes/{identificacion}:
     get:
       tags:

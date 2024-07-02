@@ -32,4 +32,6 @@ public interface ClientRepositoryService {
     @NonNull
     Mono<Person> updatePerson(@Valid ClientDo clientDo,
                               @NotNull Long idPerson);
+
+    Mono<Void> deleteClientId(@NotNull Long id);
 }

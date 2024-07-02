@@ -25,7 +25,8 @@ public class PersonController implements ClientesApi {
     public Mono<ResponseEntity<ClienteDTO>> consultarXID(Integer clientId, ServerWebExchange exchange) {
         log.info("|--> Start get client by id");
         return clientService.getClientId(clientId)
-                .map(clientDo -> ResponseEntity.ok().body(clientMapper.toClienteDto(clientDo)));
+                .map(clientDo -> ResponseEntity.ok().body(clientMapper.toClienteDto(clientDo)))
+                .doOnSuccess(clienteDTOResponseEntity -> log.info("<--| Get client by id success"));
     }
 
     @Override
@@ -35,7 +36,8 @@ public class PersonController implements ClientesApi {
                 .map(clientMapper::toClienteDto)
                 .collectList()
                 .map(Flux::fromIterable)
-                .map(clienteDTOFlux -> ResponseEntity.ok().body(clienteDTOFlux));
+                .map(clienteDTOFlux -> ResponseEntity.ok().body(clienteDTOFlux))
+                .doOnSuccess(fluxResponseEntity -> log.info("<--| Get all clients success"));
     }
 
     @Override
@@ -54,4 +56,9 @@ public class PersonController implements ClientesApi {
                 .map(clientDo -> ResponseEntity.ok().build());
     }
 
+    @Override
+    public Mono<ResponseEntity<Void>> eliminarCliente(Integer id, ServerWebExchange exchange) {
+        return clientService.deleteClientId(id)
+                .map(empty -> ResponseEntity.ok().build());
+    }
 }

@@ -21,9 +21,6 @@ import reactor.core.publisher.Mono;
 import reactor.util.function.Tuple2;
 import reactor.util.function.Tuples;
 
-import javax.persistence.Tuple;
-import java.util.function.BiFunction;
-
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -57,10 +54,9 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Mono<ClientDo> update(@NotNull Long idClient, @Valid ClientDo clientDo) {
         return clientRepositoryService.getClientId(idClient)
-                .flatMap(clientR -> clientRepositoryService.update(clientDo, idClient,clientR.getPersonaId())
-                        .flatMap(clientU ->
-                                clientRepositoryService.updatePerson(clientDo, clientR.getPersonaId())
-                                        .map(person -> Tuples.of(clientU, person))
+                .flatMap(client -> clientRepositoryService.updatePerson(clientDo, client.getPersonaId())
+                        .flatMap(person -> clientRepositoryService.update(clientDo, client.getClientId(), person.getId())
+                                .map(clientU -> Tuples.of(clientU, person))
                         )
                 )
                 .map(objects -> clientMapper.toClientDo(objects.getT1(), objects.getT2()));
@@ -74,6 +70,11 @@ public class ClientServiceImpl implements ClientService {
                         .map(person -> clientMapper.toClientDo(client, person))
                 )
                 .doFinally(signalType -> log.info("Get all clients success"));
+    }
+
+    @Override
+    public Mono<Void> deleteClientId(Integer id) {
+        return clientRepositoryService.deleteClientId(Long.valueOf(id));
     }
 
 

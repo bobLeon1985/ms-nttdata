@@ -30,6 +30,6 @@ public abstract class CRUDImpl<T, ID> implements ICRUD<T, ID> {
 
     @Override
     public Mono<Void> eliminar(ID id) {
-        return null;
+        return getRepo().deleteById(id);
     }
 }

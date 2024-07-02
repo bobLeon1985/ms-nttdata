@@ -7,10 +7,7 @@ import com.bce.personas.infrastructure.exception.DatabaseSavingOperationExceptio
 import com.bce.personas.infrastructure.output.repository.IClientService;
 import com.bce.personas.infrastructure.output.repository.entity.Client;
 import com.bce.personas.infrastructure.output.repository.entity.Person;
-import com.bce.personas.infrastructure.output.repository.impl.ClientRepoImpl;
 import com.bce.personas.infrastructure.output.repository.mapper.ClientRepositoryMapper;
-import com.bce.personas.infrastructure.output.repository.repo.IClientRepo;
-import io.r2dbc.spi.ConnectionFactory;
 import io.r2dbc.spi.Row;
 import io.r2dbc.spi.RowMetadata;
 import jakarta.validation.Valid;
@@ -86,10 +83,18 @@ public class ClientRepositoryAdapter implements ClientRepositoryService {
 
     @NonNull
     @Override
-    public Mono<Person> updatePerson(@Valid ClientDo clientDo, @NotNull Long idPerson) {
+    public Mono<Person> updatePerson(
+            @Valid ClientDo clientDo,
+            @NotNull Long idPerson
+    ) {
         return customUpdatePerson(clientDo, idPerson)
                 .flatMap(this::findByCodPerson)
                 .map(person -> person);
+    }
+
+    @Override
+    public Mono<Void> deleteClientId(@NotNull Long id) {
+        return iClientService.eliminar(id);
     }
 
     public static final BiFunction<Row, RowMetadata, Person> MAPPING_FUNCTION = (row, rowMetaData) -> Person.builder()
